@@ -1,0 +1,299 @@
+
+
+main > .container, main > .container-fluid
+{
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    font-size: .9em;
+    height: 60px;
+}
+
+.footer > .container, .footer > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    content: '';
+    left: 3px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: solid 5px transparent;
+    margin: 4px 4px 2px 4px;
+    background: transparent;
+}
+
+a.asc:after {
+    border-bottom: solid 7px #212529;
+    border-top-width: 0;
+}
+
+a.desc:after {
+    border-top: solid 7px #212529;
+    border-bottom-width: 0;
+}
+
+.grid-view th,
+.grid-view td:last-child {
+    white-space: nowrap;
+}
+
+.grid-view .filters input,
+.grid-view .filters select {
+    min-width: 50px;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.navbar form > button.logout {
+    padding-top: 7px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media(max-width:767px) {
+    .navbar form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+.navbar form > button.logout:focus,
+.navbar form > button.logout:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar form > button.logout:focus {
+    outline: none;
+}
+
+/* style breadcrumb widget as in previous bootstrap versions */
+.breadcrumb {
+    background-color: var(--bs-gray-200);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+}
+
+.breadcrumb-item > a
+{
+    text-decoration: none;
+}
+
+/* LANDING PAGE */
+
+.landing-page {
+    min-height: 100vh;
+    width:100%;
+    margin:0;
+    padding:0;
+    background: linear-gradient(
+        135deg,
+        #f4f7ff 0%,
+        #eef2ff 50%,
+        #ffffff 100%
+    );
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.landing-page .navbar {
+    padding-top: 20px;
+}
+
+.landing-page .navbar-brand {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* HERO */
+
+.landing-page h1 {
+    color: #111;
+    letter-spacing: -1px;
+}
+
+/* BUTTONS */
+
+.landing-page .btn-primary {
+    border-radius: 14px;
+    padding: 12px 24px;
+}
+
+.landing-page .btn-outline-secondary {
+    border-radius: 14px;
+    padding: 12px 24px;
+}
+
+/* PREVIEW CARD */
+
+.dashboard-preview {
+    max-width: 500px;
+    margin-top: 70px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+/* PREVIEW TOP */
+
+.preview-top small {
+    color: #777;
+    font-size: 14px;
+}
+
+.preview-top h2 {
+    margin-top: 10px;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+/* STATUS */
+
+.preview-status {
+    margin-top: 25px;
+    background: #ecfdf3;
+    color: #027a48;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: 500;
+}
+
+/* STATS */
+
+.preview-stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.stat-box {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.stat-box small {
+    color: #777;
+}
+
+.stat-box h5 {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* subtle floating feel */
+.dashboard-preview {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-preview:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+}
+
+/* gentle fade-in for hero */
+.hero-wrapper {
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero-badge {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    font-size: 14px;
+    font-weight: 600;
+    color: #3b5bfd;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+.benefits-section {
+    margin-top: 120px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.benefits-section h2 {
+    margin-bottom: 50px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.benefit-grid {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.benefit-card {
+    width: 280px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.benefit-card h4 {
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.benefit-card p {
+    color: #666;
+    margin: 0;
+}

@@ -306,7 +306,7 @@ use yii\helpers\Html;
     <div class="col-md-4 mb-3">
         <?= Html::a(
             '📖 Motivation Center',
-            ['site/motivation'],
+            ['/motivation/index'],
             ['class' => 'btn btn-outline-primary w-100 py-3']
         ) ?>
     </div>

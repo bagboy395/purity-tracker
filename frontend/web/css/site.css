@@ -297,3 +297,13 @@ a.desc:after {
     color: #666;
     margin: 0;
 }
+
+/* Reusable application card */
+.app-card {
+    border: none;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    margin-bottom: 25px;
+}

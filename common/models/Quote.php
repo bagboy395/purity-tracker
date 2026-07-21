@@ -63,7 +63,7 @@ class Quote extends \yii\db\ActiveRecord
         // Look for quotes that are active,
         // shuffle them randomly,
         // then return just one quote.
-        Quote::find()
+       return self::find()
         -> where(['is_active'=>1])
         ->orderBy(new Expression('RAND()'))
         ->one();

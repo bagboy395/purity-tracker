@@ -2,12 +2,20 @@
 
 namespace frontend\controllers;
 use yii\filters\AccessControl;
+use common\models\Quote;
 
 class MotivationController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        //ask the model for one random quote
+        $quote = Quote::getRandomActiveQuote();
+
+        //pass the quote to the view
+        return $this->render('index',[
+           'quote'=>$quote,
+        ]);
+        
     }
 
     public function behaviors(){

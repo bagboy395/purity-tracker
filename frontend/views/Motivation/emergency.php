@@ -117,7 +117,7 @@ const finishedMessage = document.getElementById('finishedMessage');
 
 startButton.addEventListener('click', function () {
 
-    let timeLeft = 10; //600seconds=10minutes in JS
+    let timeLeft = 600; //600seconds=10minutes in JS
 
     //so users can't start multiple timers
     startButton.disabled = true;

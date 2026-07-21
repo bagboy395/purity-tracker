@@ -44,18 +44,30 @@ $this->title = 'Motivation Center';
             Today's Motivation
         </h3>
 
+    <?php if ($quote): ?>
         <blockquote style="
             font-size:22px;
             font-style:italic;
             color:#444;
             margin-top:25px;
         ">
-            "Success is the sum of small efforts repeated day after day."
+            "<?= Html::encode($quote->quote) ?>"
         </blockquote>
 
         <p style="color:#888; margin-top:15px;">
-            — Robert Collier
+            — <?= Html::encode($quote->author)?>
         </p>
+
+    <?php else: ?>
+         <blockquote style="
+             font-size:22px;
+             font-style:italic;
+             color:#444;
+             margin-top:25px;
+         ">
+            No Motivational quote is available today.
+         </blockquote>
+    <?php endif; ?>
 
     </div>
 

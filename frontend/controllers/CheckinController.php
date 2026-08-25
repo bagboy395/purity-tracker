@@ -6,6 +6,7 @@ use common\models\Checkin;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\Goal;
+use common\models\Achievement;
 
 class CheckinController extends \yii\web\Controller
 {
@@ -163,6 +164,11 @@ foreach ($checkins as $checkin) {
         Yii::$app->user->id,
         $streak
     );
+
+   Achievement::unlockForStreak(
+    Yii::$app->user->id,
+    $streak
+);
 
     Yii::$app->session->setFlash(
         'success',

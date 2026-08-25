@@ -16,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Checkin;
+use common\models\Achievement;
 
 /**
  * Site controller
@@ -375,5 +376,48 @@ public function actionMotivation()
 public function actionGoals()
 {
     return $this->render('goals');
+}
+
+public function actionAchievements()
+{
+    // Get the logged-in user's check-ins
+    $checkins = Checkin::find()
+        ->where(['user_id' => Yii::$app->user->id])
+        ->orderBy(['checkin_date' => SORT_DESC])
+        ->all();
+
+    // Calculate current streak
+    $streak = 0;
+
+    $expectedDate = date('Y-m-d');
+
+    foreach ($checkins as $checkin) {
+
+        if ($checkin->checkin_date == $expectedDate) {
+
+            $streak++;
+
+            $expectedDate = date(
+                'Y-m-d',
+                strtotime($expectedDate . ' -1 day')
+            );
+
+        } else {
+
+            break;
+        }
+    }
+
+    // Get achievements already unlocked by this user
+$achievements = Achievement::find()
+    ->where(['user_id' => Yii::$app->user->id])
+    ->orderBy(['days' => SORT_ASC])
+    ->all();
+
+return $this->render('achievements', [
+    'streak' => $streak,
+    'achievements' => $achievements,
+]);
+
 }
 }

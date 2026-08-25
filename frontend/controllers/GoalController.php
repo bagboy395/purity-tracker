@@ -9,6 +9,7 @@ use frontend\models\GoalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Checkin;
 
 /**
  * GoalController implements the CRUD actions for Goal model.
@@ -48,16 +49,48 @@ class GoalController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        $searchModel = new GoalSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+   public function actionIndex()
+{
+    $searchModel = new GoalSearch();
+    $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+    // Get the user's check-ins from newest to oldest
+    $checkins = Checkin::find()
+        ->where(['user_id' => Yii::$app->user->id])
+        ->orderBy(['checkin_date' => SORT_DESC])
+        ->all();
+
+    // Calculate current streak
+    $streak = 0;
+
+    $expectedDate = date('Y-m-d');
+
+    foreach ($checkins as $checkin) {
+
+        if ($checkin->checkin_date == $expectedDate) {
+
+            $streak++;
+
+            $expectedDate = date(
+                'Y-m-d',
+                strtotime($expectedDate . ' -1 day')
+            );
+
+        } else {
+            break;
+        }
     }
+
+    // Get the milestone for the current streak
+$milestone = Goal::getMilestone($streak);
+
+    return $this->render('index', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+        'streak' => $streak,
+        'milestone' => $milestone,
+    ]);
+}
 
     /**
      * Displays a single Goal model.

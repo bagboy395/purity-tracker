@@ -74,4 +74,20 @@ class Goal extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
+    public static function updateCompletedGoals($userId, $currentStreak)
+{
+    $goals = self::find()
+        ->where([
+            'user_id' => $userId,
+            'is_completed' => 0,
+        ])
+        ->andWhere(['<=', 'target_days', $currentStreak])
+        ->all();
+
+    foreach ($goals as $goal) {
+        $goal->is_completed = 1;
+        $goal->save(false);
+    }
+}
+
 }

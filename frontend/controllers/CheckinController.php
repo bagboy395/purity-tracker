@@ -5,6 +5,7 @@ use yii\web\Controller;
 use common\models\Checkin;
 use Yii;
 use yii\filters\AccessControl;
+use common\models\Goal;
 
 class CheckinController extends \yii\web\Controller
 {
@@ -128,10 +129,55 @@ foreach ($checkins as $checkin) {
         $checkin->checkin_date = date('Y-m-d');
         $checkin->created_at = time();
 
-        $checkin->save();
-        Yii::$app->session->setFlash('success', 'Check-in successfull');
+        if ($checkin->save()) {
 
-        return $this->redirect(['checkin/index']);
+    // Calculate the user's current streak
+    $checkins = Checkin::find()
+        ->where(['user_id' => Yii::$app->user->id])
+        ->orderBy(['checkin_date' => SORT_DESC])
+        ->all();
+
+    $streak = 0;
+
+    $expectedDate = date('Y-m-d');
+
+    foreach ($checkins as $checkinRecord) {
+
+        if ($checkinRecord->checkin_date == $expectedDate) {
+
+            $streak++;
+
+            $expectedDate = date(
+                'Y-m-d',
+                strtotime($expectedDate . ' -1 day')
+            );
+
+        } else {
+
+            break;
+        }
+    }
+
+    // Check whether any goals have been reached
+    Goal::updateCompletedGoals(
+        Yii::$app->user->id,
+        $streak
+    );
+
+    Yii::$app->session->setFlash(
+        'success',
+        'Check-in successful!'
+    );
+
+} else {
+
+    Yii::$app->session->setFlash(
+        'error',
+        'Unable to save your check-in.'
+    );
+}
+
+return $this->redirect(['checkin/index']);
 
     }
 

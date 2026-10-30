@@ -17,6 +17,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Checkin;
 use common\models\Achievement;
+use common\models\Notification;
 
 /**
  * Site controller
@@ -83,6 +84,15 @@ class SiteController extends Controller
         ->orderBy(['checkin_date'=>SORT_DESC])
         ->all();
         $totalCheckins = count($checkins);
+
+        // Get the logged-in user's unread notification count.
+$unreadNotificationCount = 0;
+
+if (!Yii::$app->user->isGuest) {
+    $unreadNotificationCount = (int) Notification::getUnreadCount(
+        Yii::$app->user->id
+    );
+}
 
         //get if user has checked in with a record yet for today
         $today = date('Y-m-d');
@@ -180,6 +190,7 @@ $dailyQuote = $quotes[array_rand($quotes)];
           'dailyQuote'=>$dailyQuote,
           'totalCheckins'=>$totalCheckins,
           'longestStreak'=>$longestStreak,
+          'unreadNotificationCount' => $unreadNotificationCount,
         ]);
 
     }

@@ -190,6 +190,108 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
         background: #fff5f5;
     }
 
+
+    /* Premium profile control */
+    .pt-profile-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 5px 12px 5px 6px;
+        color: var(--pt-forest);
+        background: rgba(255, 255, 255, .78);
+        border: 1px solid var(--pt-border);
+        border-radius: 999px;
+        box-shadow: 0 8px 22px rgba(16, 37, 29, .055);
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .pt-profile-link:hover {
+        color: var(--pt-forest);
+        background: #fff;
+        border-color: rgba(35, 116, 83, .24);
+        box-shadow: 0 13px 30px rgba(16, 37, 29, .10);
+        transform: translateY(-2px);
+    }
+
+    .pt-profile-link:focus-visible {
+        outline: 3px solid rgba(64, 164, 104, .30);
+        outline-offset: 3px;
+    }
+
+    .pt-profile-avatar {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        color: #fff;
+        background: linear-gradient(145deg, #3ba66f 0%, #174c38 100%);
+        border: 2px solid rgba(255, 255, 255, .92);
+        border-radius: 50%;
+        box-shadow:
+            0 7px 17px rgba(23, 76, 56, .24),
+            inset 0 1px 1px rgba(255, 255, 255, .25);
+    }
+
+    .pt-profile-avatar svg {
+        width: 21px;
+        height: 21px;
+        stroke: currentColor;
+    }
+
+    .pt-profile-online {
+        position: absolute;
+        right: -1px;
+        bottom: 1px;
+        width: 10px;
+        height: 10px;
+        background: var(--pt-lime);
+        border: 2px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 7px rgba(23, 76, 56, .20);
+    }
+
+    .pt-profile-copy {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        line-height: 1.05;
+    }
+
+    .pt-profile-copy strong {
+        max-width: 120px;
+        overflow: hidden;
+        color: var(--pt-ink);
+        font-size: .82rem;
+        font-weight: 800;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .pt-profile-copy span {
+        margin-top: 4px;
+        color: var(--pt-ink-soft);
+        font-size: .64rem;
+        font-weight: 700;
+        letter-spacing: .045em;
+        text-transform: uppercase;
+    }
+
+    .pt-profile-chevron {
+        width: 14px;
+        height: 14px;
+        margin-left: 1px;
+        color: #789087;
+        transition: transform .2s ease;
+    }
+
+    .pt-profile-link:hover .pt-profile-chevron {
+        transform: translateY(2px);
+    }
+
     /* Guest landing page */
     .pt-hero {
         position: relative;
@@ -866,6 +968,29 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
             font-size: .82rem;
         }
 
+        .pt-profile-link {
+            min-height: 40px;
+            padding: 4px 8px 4px 4px;
+        }
+
+        .pt-profile-avatar {
+            width: 32px;
+            height: 32px;
+        }
+
+        .pt-profile-avatar svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .pt-profile-copy {
+            display: none;
+        }
+
+        .pt-profile-chevron {
+            display: none;
+        }
+
         .pt-hero {
             padding: 42px 0 58px;
         }
@@ -908,6 +1033,8 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
         .pt-action-card {
             min-height: 118px;
         }
+
+        
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -919,37 +1046,60 @@ $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good
             animation-duration: .01ms !important;
         }
     }
+
+    
+/* Notification bell */
+.pt-notification-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    color: var(--pt-forest);
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid var(--pt-border);
+    border-radius: 50%;
+    box-shadow: 0 8px 22px rgba(16, 37, 29, .055);
+    transition: transform .2s ease, background .2s ease;
+}
+
+.pt-notification-link:hover {
+    color: var(--pt-forest);
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.pt-notification-link svg {
+    width: 22px;
+    height: 22px;
+}
+
+.pt-notification-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    color: #fff;
+    background: #dc3545;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+}
+
 </style>
 
 <div class="purity-page">
     <div class="pt-shell">
-        <nav class="pt-navbar" aria-label="Primary navigation">
-            <?= Html::a(
-                '<span class="pt-logo" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20.5 3.5C13 3.4 6.7 6 5.3 12.5c-1 4.8 2.7 7.8 6.2 6.1 5-2.4 7.5-8.9 9-15.1Z"/>
-                        <path d="M4 20c3.6-4.5 7.1-7.2 12.8-10.4"/>
-                    </svg>
-                </span>
-                <span class="pt-brand-copy">Purity Tracker<small>One day at a time</small></span>',
-                ['site/index'],
-                ['class' => 'pt-brand', 'encode' => false, 'aria-label' => 'Purity Tracker home']
-            ) ?>
-
-            <?php if (Yii::$app->user->isGuest): ?>
-                <div class="pt-nav-actions">
-                    <?= Html::a('About', ['site/about'], ['class'=> 'text-decoration-none']) ?>
-                    <?= Html::a('Log in', ['site/login'], ['class' => 'pt-nav-button pt-button-light']) ?>
-                    <?= Html::a('Get started', ['site/signup'], ['class' => 'pt-nav-button pt-button-primary']) ?>
-                </div>
-            <?php else: ?>
-                <div class="pt-nav-actions">
-                    <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'pt-logout-form']) ?>
-                    <?= Html::submitButton('Log out', ['class' => 'pt-nav-button pt-logout']) ?>
-                    <?= Html::endForm() ?>
-                </div>
-            <?php endif; ?>
-        </nav>
+        
 
         <?php if (Yii::$app->user->isGuest): ?>
             <main>

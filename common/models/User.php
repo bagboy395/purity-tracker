@@ -228,4 +228,16 @@ class User extends ActiveRecord implements IdentityInterface
     return false;
     }
 
+
+    /**
+ * Gets this user's notification preferences.
+ */
+public function getNotificationPreference()
+{
+    return $this->hasOne(
+        NotificationPreference::class,
+        ['user_id' => 'id']
+    );
+}
+
 }

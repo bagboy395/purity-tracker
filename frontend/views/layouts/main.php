@@ -25,6 +25,8 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
+<?= $this->render('_header') ?>
+
 <div class="wrap <?= Yii::$app->user->isGuest ? 'landing-wrap' : '' ?>">
 
     <?php if (Yii::$app->user->isGuest): ?>
@@ -44,7 +46,7 @@ AppAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-end"><?= Yii::powered() ?></p>
+    
     </div>
 </footer>
 

@@ -17,6 +17,8 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="dashboard" />
+        <Stack.Screen name="journal/index" />
+        <Stack.Screen name="journal/create" />
       </Stack>
     </ThemeProvider>
   );

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 import {
   View,
   Text,
@@ -27,6 +28,7 @@ type Checkin = {
 };
 
 export default function DashboardScreen() {
+  const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [checkins, setCheckins] = useState<Checkin[]>([]);
   const [loading, setLoading] = useState(true);
@@ -451,16 +453,22 @@ const calculateBestStreak = () => {
         {/* Journey Tools */}
         <Text style={styles.sectionTitle}>Keep growing</Text>
 
-        <View style={styles.toolCard}>
-          <View style={[styles.toolIcon, styles.toolIconGreen]}>
-            <Text style={styles.toolEmoji}>📝</Text>
-          </View>
+        
+<TouchableOpacity
+  style={styles.toolCard}
+  activeOpacity={0.85}
+  onPress={() => router.push('/journal/index')}
+>
+  <View style={[styles.toolIcon, styles.toolIconGreen]}>
+    <Text style={styles.toolEmoji}>📝</Text>
+  </View>
 
-          <Text style={styles.toolTitle}>Journal</Text>
-          <Text style={styles.toolDescription}>
-            Make space to reflect honestly.
-          </Text>
-        </View>
+  <Text style={styles.toolTitle}>Journal</Text>
+  <Text style={styles.toolDescription}>
+    Make space to reflect honestly.
+  </Text>
+</TouchableOpacity>
+
 
         <View style={styles.toolCard}>
           <View style={[styles.toolIcon, styles.toolIconPurple]}>

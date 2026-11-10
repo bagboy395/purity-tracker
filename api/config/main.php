@@ -38,6 +38,10 @@ $config = [
         'GET site/profile' => 'site/profile',
         'GET site/checkins' => 'site/checkins',
         'POST site/checkin' => 'site/create-checkin',
+        'GET site/journals' => 'site/journals',
+        'POST site/journals' => 'site/create-journal',
+        'PUT site/journals/<id:\d+>' => 'site/update-journal',
+        'DELETE site/journals/<id:\d+>' => 'site/delete-journal',
     ],
 ],
 
